@@ -38,7 +38,10 @@ pipeline {
         stage('Deploy to K8s') {
             steps{
                 echo "Deployment started ..."
-                powershell "sed -i 's/pipeline:latest/pipeline:${env.BUILD_ID}/g' deployment.yaml"
+                powershell '''
+                    $buildId = $env:BUILD_ID
+                    (Get-Content deployment.yaml) -replace 'pipeline:latest', "pipeline:$buildId" | Set-Content deployment.yaml
+                '''
                 step([$class: 'KubernetesEngineBuilder', \
                   projectId: env.PROJECT_ID, \
                   clusterName: env.CLUSTER_NAME, \
