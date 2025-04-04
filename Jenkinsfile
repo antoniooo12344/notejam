@@ -27,7 +27,7 @@ pipeline {
                     withCredentials( \
                                  [string(credentialsId: 'dockerhub',\
                                  variable: 'dockerhub')]) {
-                        powershell "docker login -u laba3clttec -p ${dockerhub}"
+                        powershell "docker login -u laba3clttec -p '${dockerhub}'"
                     }
                     app.push("${env.BUILD_ID}")
                  }
