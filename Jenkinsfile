@@ -16,7 +16,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    app = docker.build("arshad1914/pipeline:${env.BUILD_ID}")
+                    app = docker.build("laba3clttec/pipeline:${env.BUILD_ID}")
                     }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                     withCredentials( \
                                  [string(credentialsId: 'dockerhub',\
                                  variable: 'dockerhub')]) {
-                        sh "docker login -u arshad1914 -p ${dockerhub}"
+                        sh "docker login -u laba3clttec -p ${dockerhub}"
                     }
                     app.push("${env.BUILD_ID}")
                  }
