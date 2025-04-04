@@ -27,7 +27,7 @@ pipeline {
                     withCredentials( \
                                  [string(credentialsId: 'dockerhub',\
                                  variable: 'dockerhub')]) {
-                        sh "docker login -u laba3clttec -p ${dockerhub}"
+                        powershell "docker login -u laba3clttec -p ${dockerhub}"
                     }
                     app.push("${env.BUILD_ID}")
                  }
@@ -38,9 +38,9 @@ pipeline {
         stage('Deploy to K8s') {
             steps{
                 echo "Deployment started ..."
-                sh 'ls -ltr'
-                sh 'pwd'
-                sh "sed -i 's/pipeline:latest/pipeline:${env.BUILD_ID}/g' deployment.yaml"
+                powershell 'ls -ltr'
+                powershell 'pwd'
+                powershell "sed -i 's/pipeline:latest/pipeline:${env.BUILD_ID}/g' deployment.yaml"
                 step([$class: 'KubernetesEngineBuilder', \
                   projectId: env.PROJECT_ID, \
                   clusterName: env.CLUSTER_NAME, \
