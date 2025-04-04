@@ -38,8 +38,6 @@ pipeline {
         stage('Deploy to K8s') {
             steps{
                 echo "Deployment started ..."
-                powershell 'ls -ltr'
-                powershell 'pwd'
                 powershell "sed -i 's/pipeline:latest/pipeline:${env.BUILD_ID}/g' deployment.yaml"
                 step([$class: 'KubernetesEngineBuilder', \
                   projectId: env.PROJECT_ID, \
