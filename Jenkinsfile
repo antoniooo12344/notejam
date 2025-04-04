@@ -27,7 +27,7 @@ stages {
    		 	echo "Deployment started ..."
    		 	sh 'ls -ltr'
    		 	sh 'pwd'
-   		 	sh "sed -i 's/pipeline:latest/pipeline:class: 'KubernetesEngineBuilder', 
+   		 	sh "sed -i 's/pipeline:latest/pipeline:class: 'KubernetesEngineBuilder' {
    			   projectId: env.PROJECT_ID, 
    			   clusterName: env.CLUSTER_NAME, 
    			   location: env.LOCATION, 
