@@ -3,7 +3,7 @@ pipeline {
     environment {
         PROJECT_ID = 'laba1clttech123'
                 CLUSTER_NAME = 'autopilot-cluster-1'
-                LOCATION = 'europe-west6-c'
+                LOCATION = 'europe-west6'
                 CREDENTIALS_ID = 'a87dea6a-c06b-47ef-944d-cf42146c5103'
     }
     
